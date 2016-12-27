@@ -4,7 +4,7 @@
 title: "CodeMoneky丶"
 description: "Yumwey's blog,use Jekyll and github pages."
 keywords: ""
-baseurl: "/"
+baseurl: "/MyFEBlog/"
 url: "https://yumwey.github.io/MyFEBlog/"
 # url: "http://127.0.0.1:4000"
 
