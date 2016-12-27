@@ -1,20 +1,20 @@
 # skills section data
-- name: Python
+- name: Javascript(ES3/ES5/ES6)
   percentage: 85
 
-- name: HTML/CSS
+- name: HTML/CSS(Sass/Less/NodeSass/PostCss)
   percentage: 65
 
-- name: Linux/Shell
+- name: Gulp/Webpack
   percentage: 75
 
 - name: jQuery
   percentage: 85
 
-- name: AngularJS
-  percentage: 80
+- name: React
+  percentage: 60
 
-- name: Ionic
+- name: Backbone
   percentage: 70
 
 - name: Vuejs

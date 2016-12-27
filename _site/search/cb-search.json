@@ -52,7 +52,7 @@
     
 	{
 		"title" : "JavaScript中if语句的几种优化代码的写法 - 2016-06-26",
-		"url" : "/html/2016/06/26/JavaScript-if-statement.html"
+		"url" : "/precompile/2016/06/26/JavaScript-if-statement.html"
 	}
 	
 	,
@@ -331,8 +331,16 @@
 	
     
 	{
+		"title" : "测试一下 - 2015-01-13",
+		"url" : "/linux/2015/01/13/text.html"
+	}
+	
+	,
+	
+    
+	{
 		"title" : "RHEL的EPEL源地址及安装 - 2015-01-13",
-		"url" : "/linux/2015/01/13/linux-epel.html"
+		"url" : "/construct/2015/01/13/linux-epel.html"
 	}
 	
 	,
@@ -340,7 +348,7 @@
     
 	{
 		"title" : "我的第一篇博客 - 2015-01-08",
-		"url" : "/life/2015/01/08/first-blog.html"
+		"url" : "/precompile/2015/01/08/first-blog.html"
 	}
 	
     

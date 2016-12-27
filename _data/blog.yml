@@ -1,24 +1,18 @@
 # blog page sections
-- name: Blog
+- name: 博客
   href: '/blog/'
 
-- name: Python
-  href: '/python/'
+- name: Javascript
+  href: '/javascript/'
 
-- name: Linux
-  href: '/linux/'
+- name: Html/Css/Sass
+  href: '/precompile/'
 
-- name: HTML
-  href: '/html/'
+- name: 前端工程化
+  href: '/construct/'
 
-- name: Database
-  href: '/database/'
+- name: 前端测试
+  href: '/testing/'
 
-- name: Mac
-  href: '/mac/'
-
-- name: Life
-  href: '/life/'
-
-- name: Donate
-  href: '/donate/'
+- name: 个人心得
+  href: '/psersonl/'
