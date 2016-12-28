@@ -1,0 +1,166 @@
+.centerbg {
+    background-image: url('../img/landing/centbg.png');
+    width: 100%;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+/**头部样式 **/
+
+.slant-left {
+    background: #fff;
+    width: 101%;
+    position: absolute;
+    bottom: -80px;
+    right: 48%;
+    height: 200px;
+    -webkit-transform: rotate(6deg);
+    -moz-transform: rotate(6deg);
+    -ms-transform: rotate(6deg);
+    -o-transform: rotate(6deg);
+    transform: rotate(6deg);
+}
+.slant-right {
+    background: #fff;
+    width: 101%;
+    position: absolute;
+    bottom: -80px;
+    left: 48%;
+    height: 200px;
+    -webkit-transform: rotate(-6deg);
+    -moz-transform: rotate(-6deg);
+    -ms-transform: rotate(-6deg);
+    -o-transform: rotate(-6deg);
+    transform: rotate(-6deg);
+}
+
+/**个人信息简介**/
+
+.focusinfo {
+    position: relative;
+    padding: 0 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -mos-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.focusinfo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+.header-info {
+    width: 40%;
+    margin: auto;
+    font-size: 14px;
+    color: #EAEADF;
+    background: rgba(0, 0, 0, 0.44);
+    padding: 20px 30px;
+    margin-top: 30px;
+    font-family: miranafont, "Hiragino Sans GB", STXihei, "Microsoft YaHei", SimSun, sans-serif;
+    letter-spacing: 1px;
+    line-height: 30px;
+    position: relative;
+}
+.header-info::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.44);
+    position: absolute;
+    /* top: -8px; */
+    top: -10px;
+    left: 48%;
+}
+.header-info p {
+    margin: 0;
+}
+.top-social {
+    height: 32px;
+    margin-top: 30px;
+    margin-left: 10px;
+    list-style: none;
+    display: inline-block;
+    font-family: miranafont, "Hiragino Sans GB", STXihei, "Microsoft YaHei", SimSun, sans-serif;
+}
+.top-social img {
+    height: 32px;
+    width: 32px;
+    background: white;
+}
+.top-social li {
+    float: left;
+    margin-right: 10px
+}
+.wechat {
+    width: 32px;
+    height: 32px;
+    position: relative;
+}
+.wechatInner img {
+    border-radius: 0px;
+    width: 121px;
+    height: auto;
+}
+.wechatInner {
+    height: 80px;
+    width:80px;
+    /* padding: 10px; */
+    background: #fff;
+    top: 20px;
+    left: -40px;
+    -webkit-transform: translate3d(0, 50px, 0);
+    transform: translate3d(0, 50px, 0);
+    opacity: 0;
+}
+.wechatInner, .qqInner {
+    position: absolute;
+    transition: .7s all ease;
+    -webkit-transition: .7s all ease;
+    -moz-transition: .7s all linear;
+    -o-transition: .7s all ease;
+    -ms-transition: .7s all ease;
+}
+.wechat:hover .wechatInner {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+    opacity: 1;
+    visibility: visible;
+}
+.qq {
+    position: relative;
+}
+.qqInner {
+    padding: 10px;
+    background: #FFFFFF;
+    color: #505050;
+    top: 40px;
+    left: -58px;
+    width: 150px;
+    -webkit-transform: translate3d(0, 50px, 0);
+    transform: translate3d(0, 50px, 0);
+    font-size: 13px;
+    visibility: hidden;
+    opacity: 0;
+}
+.qq:hover .qqInner {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+    visibility: visible;
+}
+@media (max-width: 768px) {
+    .header-info{
+        width: auto;
+        font-size: .2rem;
+        line-height: 1rem;
+    }
+}

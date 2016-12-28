@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: <https://yumwey.github.io/MyFEBlog//sitemap.xml>
+Sitemap: <isunmonkey.com/sitemap.xml>
