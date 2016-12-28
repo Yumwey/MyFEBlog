@@ -41,7 +41,7 @@
     toggleSearch(true);
   });
 
-  $.getJSON("/MyFEBlog/search/cb-search.json")
+  $.getJSON("/search/cb-search.json")
     .done(function (data) {
       if (data.code == 0) {
         $("#search-content").typeahead({
