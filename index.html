@@ -48,7 +48,7 @@ permalink: /
             </a>
         </div>
         <div class="header-info">
-			 <p>大前端下的一枚小小前端er,爱前端，爱生活~~</p>
+			 <p>大前端下的一枚小前端er,爱前端，爱生活~~</p>
          </div>
          <div class="top-social">
      		<li class="wechat"><a href=""><img src="{{ "static/img/landing/wechat.png"}}"></a>
@@ -76,7 +76,7 @@ permalink: /
     </div>
 </div>
 
-{% for section in site.data.landing %}
+{% for section in site.data.indexs %}
   {% assign loopindex = forloop.index | modulo: 2 %}
   <section id="{{ section.id }}" class="features {% if loopindex != 1 %} gray-section {% endif %} {{ section.css }}" style="margin-top: 0px;">
     {% include sections/{{section.tpl}} %}

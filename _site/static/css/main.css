@@ -7,7 +7,19 @@
     overflow: hidden;
     background-repeat: no-repeat;
 }
+.landing-page .navbar-default .navbar-brand{
+    background: #14474b;
+}
+.landing-page .navbar-default .navbar-brand:hover{
+    background: #0a828c;
+}
+.landing-page .gray-section{
+    background: #fff;
+}
 
+.landing-page .navy-line{
+    border-bottom: 2px solid #0a828c;
+}
 /**头部样式 **/
 
 .slant-left {
@@ -163,4 +175,27 @@
         font-size: .2rem;
         line-height: 1rem;
     }
+}
+
+/** 重设ihover **/
+.ih-item.square{
+    width: 380px;
+    height: 250px;
+}
+
+.main-title{
+    border-bottom:1px dashed #ECECEC
+}
+.article-pic img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    margin-top: 20px;
+    border: 2px solid #d9dede;
+}
+.ibox-index{
+    margin-bottom:10px;
+}
+.ibox-content-index{
+    padding: 10px 10px 3px;
 }

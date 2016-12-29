@@ -35,6 +35,12 @@
   "link":{
     "link": "友情链接",
     "view": "次访问"
+},
+  "my_focus":{
+      "my_focus":"我专注于"
+  },
+  "last_update":{
+      "last_update":"最近动态"
   }
 
 }

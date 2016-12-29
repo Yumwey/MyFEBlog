@@ -1,0 +1,24 @@
+<div class="container" id="i18_career">
+    <div class="row">
+        <div class="col-lg-12 text-center main-title">
+            <div class="navy-line"></div>
+            <h1><span data-i18n="my_focus.my_focus">My Focuse</span></h1>
+        </div>
+    </div>
+    <div class="row features-block">
+        {% for focus in site.data.myfocus %}
+        {% assign loopindex = forloop.index | modulo: 2 %}
+        <div class="col-sm-4 wow {{ focus.animate }}  animated">
+            <div class="ih-item square colored effect6 bottom_to_top">
+                <a href={{ focus.link }}>
+                    <div class="img"><img src={{ focus.imgurl }} alt="img"></div>
+                    <div class="info">
+                        <h3>{{ focus.title }}</h3>
+                        <p>{{ focus.des }}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

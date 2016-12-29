@@ -1,0 +1,17 @@
+- title: 前端
+  imgurl: 'static/img/landing/it.png'
+  animate: 'rollIn'
+  link: /blog/
+  des: 自从第二次浏览器战争之后，前端就开始了迅猛的发展，以至于各种技术，框架层出不穷，譬如最近大热的Vue,Angular,React等，前端门槛也越来越高，只有不断学习才有进步，才有底气去挑战~
+
+- title: 技术
+  imgurl: 'static/img/landing/jishu.png'
+  animate: 'pulse'
+  link: /blog/
+  des: 对技术的追求，是每个Coder的本质，Geek是技术爱好者的标配，只有在新型的技术中充实自己，才能在自己的领域获取更多的领悟和经验
+
+- title: 生活
+  imgurl: 'static/img/landing/life.png'
+  animate: 'bounceInRight'
+  link: '/blog/'
+  des: 生活是一片湖，平静时安逸却美好，波动时，动荡和激扬。

@@ -32,6 +32,11 @@
   "link":{
     "link": "Link",
     "view": "views"
-  }
-
+    },
+    "my_focus":{
+        "my_focus":"My Focus"
+    },
+    "last_update":{
+        "last_update":"Last State"
+    }
 }
