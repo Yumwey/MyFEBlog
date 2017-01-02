@@ -1,15 +1,42 @@
 # careers section data
 
 - name:
-    detail: Graduation
-    i18n: college
+    detail: 毕业
   desc:
-    detail: At July 2013,I graduated from college and started my IT technology tour.
-    i18n: college_des
+    detail: 毕业于江西师范大学软件专业，大学主修电商web开发和实践，主要涉及.net的后端开发，前端辅助类开发
   date:
-    detail: Jul. 2013
-    i18n: college_date
+    detail: 2015.5
   job:
-    detail: Student
-    i18n: college_job
+    detail: 学生
+    icon: fa-book
+
+
+- name:
+    detail: 第一份工作
+  desc:
+    detail: 在南昌天纳科技公司，进行客服系统和公司OA系统的独立开发，负责主要功能模块前后端开发，主要项目有TTTV在线视频检测系统，CMS等
+  date:
+    detail: 2014.6
+  job:
+    detail: .net程序猿
+    icon: fa-book
+
+- name:
+    detail: 软云科技股份
+  desc:
+    detail: 负责前端功能部分开发，主要开发为公司自主产品，包括魔题库（www.motk.com），云学通等产品线的前端开发
+  date:
+    detail: 2016.2
+  job:
+    detail: 前端开发工程师
+    icon: fa-book
+
+- name:
+    detail: 中地数码
+  desc:
+    detail: 负责前端功能部分开发，主要参与公司前端的架构设计，技术选型以及部分项目业务开发，完成了项目React重构，并产出综合公司先有项目前端架构的通用解决方案。
+  date:
+    detail: 2016 - 至今
+  job:
+    detail: 前端开发工程师
     icon: fa-book

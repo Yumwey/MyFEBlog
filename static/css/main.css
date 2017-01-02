@@ -7,16 +7,31 @@
     overflow: hidden;
     background-repeat: no-repeat;
 }
+.blogbg {
+    background-image: url('../img/landing/blogbg.jpg');
+    width: 100%;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+.landing-page .testimonials{
+    background-image: url('../img/landing/love.jpg');
+}
 .landing-page .navbar-default .navbar-brand{
     background: #14474b;
 }
 .landing-page .navbar-default .navbar-brand:hover{
     background: #0a828c;
 }
-.landing-page .gray-section{
+`.landing-page .gray-section`{
     background: #fff;
 }
-
+.landing-page .testimonials{
+    background-image: url('../img/landing/love.jpg');
+    background-attachment: fixed;
+}
 .landing-page .navy-line{
     border-bottom: 2px solid #0a828c;
 }
