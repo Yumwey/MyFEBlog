@@ -258,13 +258,13 @@
   <li>HTTP访问控制（CORS）
     <blockquote>
       <p>CORS也称跨域资源共享，其实现方式是通过新增部分HTTP请求首部（header），来给服务端增加对请求来源的声明，最基础的实现方式是：服务端通过设置Access-Control-Allow-Origin（<code class="highlighter-rouge">允许请求源</code>）来开放其他域对当前域接口的请求，前端实现和以往并没有区别。另外，对那些会对服务器数据造成破坏性影响的 HTTP 请求方法（特别是 GET 以外的 HTTP 方法，或者搭配某些MIME类型的POST请求），标准强烈要求浏览器必须先以 OPTIONS 请求方式发送一个预请求(preflight request)，从而获知服务器端对跨源请求所支持 HTTP 方法。</p>
-      <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span><span class="s1">'www.baidu.com/getSearch'</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystate</span> <span class="o">=</span> <span class="nx">onreadystate</span><span class="p">;</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">param</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">onreadystate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// 请求状态和返回</span>
-<span class="p">}</span>
+      <div class="highlighter-rouge"><pre class="highlight"><code>var xhr = new XMLHttpRequest();
+xhr.open('POST','www.baidu.com/getSearch',true);
+xhr.onreadystate = onreadystate;
+xhr.send(param);
+var onreadystate = function(){
+    // 请求状态和返回
+}
 </code></pre>
       </div>
       <p><strong>注意:</strong> CORS并不兼容IE10以下的IE浏览器，但是IE8 和 9 通过 XDomainRequest 对象来实现CORS</p>
@@ -273,46 +273,46 @@
   <li>JSONP（JSON with Padding）
     <blockquote>
       <p>通过上文对同源策略的介绍我们可以知道，客户端可以通过部分标签嵌入的方式实现资源的跨域，比如<script>,<img />等，而JSONP就是通过嵌入script标签的方式实现对外域资源的读取操作。JSONP和JSON不同，JSON是一种是具备简单结构的纯文本，是现在数据传输的主流方式，区别于以往XML,JSON更加简洁高效而且更易于维护和编写，JSONP则是包含回调函数和数据格式的JSON使用模式。它允许服务端通过集成Script tags返回给客户端，客户端嵌入到当前调用页面来实现资源跨域。</script></p>
-      <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="c1">//需要请求跨域资源的页面:a.html</span>
-    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"</span><span class="o">&gt;</span>
-    <span class="c1">// 上面type表示向服务端请求的参数,本地的回调函数是getjsonp</span>
-    <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-       <span class="kd">function</span> <span class="nx">getjsonp</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>   <span class="c1">//显示接受到的数据</span>
-       <span class="p">}</span>
-    <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span>    <span class="c1">//服务端将会返回下面代码</span>
-    <span class="nx">getjsonp</span><span class="p">({</span>
-        <span class="na">type</span><span class="p">:</span><span class="s1">'json'</span><span class="p">,</span>
-        <span class="na">name</span><span class="p">:</span><span class="s1">'yw'</span><span class="p">,</span>
-        <span class="na">sex</span><span class="p">:</span><span class="s1">'man'</span>
-    <span class="p">})</span>
-    <span class="c1">//JQ实现</span>
-    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-       <span class="na">dataType</span><span class="p">:</span><span class="s1">'jsonp'</span><span class="p">,</span>
-       <span class="na">type</span><span class="p">:</span><span class="s1">'get'</span><span class="p">,</span>
-       <span class="na">url</span><span class="p">:</span><span class="s1">'//isunmonkey.com/a.html?type=json'</span><span class="p">,</span>
-       <span class="na">jsonp</span><span class="p">:</span><span class="s1">'callback'</span><span class="p">,</span>
-       <span class="na">jsonpCallback</span><span class="p">:</span><span class="s1">'getjsonp'</span><span class="p">,</span>
-       <span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>  <span class="c1">//输出数据</span>
-       <span class="p">}</span>
-    <span class="p">})</span>
+      <div class="highlighter-rouge"><pre class="highlight"><code>  //需要请求跨域资源的页面:a.html
+    &lt;script src="//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"&gt;
+    // 上面type表示向服务端请求的参数,本地的回调函数是getjsonp
+    &lt;script&gt;
+       function getjsonp(data){
+           console.log(data)   //显示接受到的数据
+       }
+    &lt;/script&gt;
+    //服务端将会返回下面代码
+    getjsonp({
+        type:'json',
+        name:'yw',
+        sex:'man'
+    })
+    //JQ实现
+    $.ajax({
+       dataType:'jsonp',
+       type:'get',
+       url:'//isunmonkey.com/a.html?type=json',
+       jsonp:'callback',
+       jsonpCallback:'getjsonp',
+       success:function(data){
+           console.log(data)  //输出数据
+       }
+    })
 </code></pre>
       </div>
       <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
-      <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">//a.html</span>
- <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-   <span class="kd">function</span> <span class="nx">getjson</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-   <span class="p">}</span>
- <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span> <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//isunmonkey.com/a.js"</span><span class="o">&gt;</span>
- <span class="c1">//a.js源码</span>
- <span class="nx">getjson</span><span class="p">({</span>
-   <span class="na">name</span><span class="p">:</span><span class="s1">'yw'</span><span class="p">,</span>
-   <span class="na">sex</span><span class="p">:</span><span class="s1">'man'</span>
- <span class="p">})</span>
+      <div class="highlighter-rouge"><pre class="highlight"><code> //a.html
+ &lt;script&gt;
+   function getjson(data){
+       console.log(data);
+   }
+ &lt;/script&gt;
+ &lt;script src="//isunmonkey.com/a.js"&gt;
+ //a.js源码
+ getjson({
+   name:'yw',
+   sex:'man'
+ })
 </code></pre>
       </div>
       <p>在a页面实现了一个方法getjson，调用外部js：a.js,在a.js中引用了getjson方法，而JSONP的区别就是对函数getjson的引用是通过服务端动态载入。</p>
