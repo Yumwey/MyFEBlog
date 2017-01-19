@@ -341,18 +341,18 @@
   <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> //a.html
- &lt;script&gt;
-     function getjson(data){
-         console.log(data);
-     }
- &lt;/script&gt;
- &lt;script src="//isunmonkey.com/a.js"&gt;
- //a.js源码
- getjson({
-     name:'yw',
-     sex:'man'
- })
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">//a.html</span>
+ <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+     <span class="kd">function</span> <span class="nx">getjson</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+     <span class="p">}</span>
+ <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span> <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//isunmonkey.com/a.js"</span><span class="o">&gt;</span>
+ <span class="c1">//a.js源码</span>
+ <span class="nx">getjson</span><span class="p">({</span>
+     <span class="na">name</span><span class="p">:</span><span class="s1">'yw'</span><span class="p">,</span>
+     <span class="na">sex</span><span class="p">:</span><span class="s1">'man'</span>
+ <span class="p">})</span>
 </code></pre>
 </div>
 <blockquote>
