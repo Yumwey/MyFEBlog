@@ -214,3 +214,31 @@
 .ibox-content-index{
     padding: 10px 10px 3px;
 }
+
+/** 博客内容详情页面 **/
+.mask{
+    background: white;
+    -webkit-box-shadow: 5px 4px 26px #a9a5a5;
+    box-shadow: 5px 4px 26px #a9a5a5;
+    position: fixed;
+    z-index: 999;
+    height:300px;
+    width:500px;
+    transform:scale(0);
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    line-height: 300px;
+    text-align: center;
+}
+.mask.show{
+    transform:scale(1);
+}
+.pay-pal {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+}
+.pay-pal img{
+    width:100%
+}

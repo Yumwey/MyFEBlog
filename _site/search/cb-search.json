@@ -3,32 +3,8 @@
 	"data" : [
 	 
 	{
-		"title" : "排版测试 - 2016-12-28",
-		"url" : "/javascript/2016/12/28/first-blog0.html"
-	}
-	
-	,
-	
-    
-	{
-		"title" : "我的第一篇博客 - 2016-12-27",
-		"url" : "/constrctor/2016/12/27/first-blog.html"
-	}
-	
-	,
-	
-    
-	{
-		"title" : "Javascript类别测试 - 2015-12-28",
-		"url" : "/javascript/2015/12/28/first-blog00.html"
-	}
-	
-	,
-	
-    
-	{
-		"title" : "我的第一篇博客 - 2015-01-08",
-		"url" : "/precompile/2015/01/08/first-blog0.html"
+		"title" : "前端资源跨域以及解决方案 - 2017-01-17",
+		"url" : "/http/2017/01/17/cors.html"
 	}
 	
     

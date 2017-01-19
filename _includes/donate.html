@@ -1,3 +1,23 @@
 <div class="text-center">
-<a class="btn btn-warning  dim btn-large-dim btn-outline" href="/donate/"><i class="fa fa-smile-o"></i></a>
+<a id="donate-img" class="btn btn-warning  dim btn-large-dim btn-outline" href="javascript:void(0)"><i class="fa fa-smile-o"></i></a>
 </div>
+
+<script type="text/javascript">
+
+    $('#donate-img').on('click',function(e){
+        var maskEle = '<div class="mask"><div class="pay-pal"><img src={{ "static/img/donate/alipay.png" | prepend: site.baseurl }}></div>'+
+                        '<div class="pay-pal"><img src={{ "static/img/donate/wechat_pay.png" | prepend: site.baseurl }}></div></div>';
+        $('body').prepend(maskEle);
+        $('.mask').css({
+            left:$(window).width()/2 - 250,
+            top:$(window).height()/2 - 150
+        })
+        $('.mask').addClass('show');
+        e.stopPropagation();
+    })
+
+    $(document.body).on('click',function(){
+        $('.mask').removeClass('show');
+    })
+
+</script>
