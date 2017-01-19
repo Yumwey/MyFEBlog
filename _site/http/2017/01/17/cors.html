@@ -210,11 +210,18 @@
   <p>IE例外情况：</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>+ ``授信范围``（Trust Zones）：两个相互之间高度互信的域名，如公司域名（corporate domains），不遵守同源策略的限制。
+<blockquote>
+  <ul>
+    <li><code class="highlighter-rouge">授信范围</code>（Trust Zones）：两个相互之间高度互信的域名，如公司域名（corporate domains），不遵守同源策略的限制。</li>
+  </ul>
+</blockquote>
 
-+ ``端口``：IE未将端口号加入到同源策略的组成部分之中，因此 *http://company.com:81/index.html*和*http://company.com/index.html* 属于同源并且不受任何限制。    &amp;nbsp;&amp;nbsp; **这些例外是非标准的，其它浏览器也未做出支持，但会助于开发基于window RT IE的应用程序。**
-</code></pre>
-</div>
+<blockquote>
+  <ul>
+    <li><code class="highlighter-rouge">端口</code>：IE未将端口号加入到同源策略的组成部分之中，因此 <em>http://company.com:81/index.html</em>和<em>http://company.com/index.html</em> 属于同源并且不受任何限制。<br />
+    <strong>这些例外是非标准的，其它浏览器也未做出支持，但会助于开发基于window RT IE的应用程序。</strong></li>
+  </ul>
+</blockquote>
 
 <h3 id="section-1">2.更改源策略:</h3>
 <p>对于相同主域的，可以通过设置document.domain进行跨域，即将其设置为当前域或者当前域的超级域，比如：主页www.isunmonkey.com，则可以将子页和主页的document.domain都设置为：isunmonkey.com，这样就实现了不同页面之间的调用.</p>
@@ -307,58 +314,63 @@
     <blockquote>
       <p>通过上文对同源策略的介绍我们可以知道，客户端可以通过部分标签嵌入的方式实现资源的跨域，比如<script>,<img />等，而JSONP就是通过嵌入script标签的方式实现对外域资源的读取操作。JSONP和JSON不同，JSON是一种是具备简单结构的纯文本，是现在数据传输的主流方式，区别于以往XML,JSON更加简洁高效而且更易于维护和编写，JSONP则是包含回调函数和数据格式的JSON使用模式。它允许服务端通过集成Script tags返回给客户端，客户端嵌入到当前调用页面来实现资源跨域。</script></p>
     </blockquote>
-
-    <p><code class="highlighter-rouge">javascript
-      //需要请求跨域资源的页面:a.html
-        &lt;script src="//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"&gt;
-        // 上面type表示向服务端请求的参数,本地的回调函数是getjsonp
-        &lt;script&gt;
-           function getjsonp(data){
-               console.log(data)   //显示接受到的数据
-           }
-        &lt;/script&gt;
-        //服务端将会返回下面代码
-        getjsonp({
-            type:'json',
-            name:'yw',
-            sex:'man'
-        })
-        //JQ实现
-        $.ajax({
-           dataType:'jsonp',
-           type:'get',
-           url:'//isunmonkey.com/a.html?type=json',
-           jsonp:'callback',
-           jsonpCallback:'getjsonp',
-           success:function(data){
-               console.log(data)  //输出数据
-           }
-        })
- </code></p>
-    <blockquote>
-      <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
-    </blockquote>
-
-    <p><code class="highlighter-rouge">
-   //a.html
-   &lt;script&gt;
-       function getjson(data){
-           console.log(data);
-       }
-   &lt;/script&gt;
-   &lt;script src="//isunmonkey.com/a.js"&gt;
-   //a.js源码
-   getjson({
-       name:'yw',
-       sex:'man'
-   })
- </code></p>
-    <blockquote>
-      <p>在a页面实现了一个方法getjson，调用外部js：a.js,在a.js中引用了getjson方法，而JSONP的区别就是对函数getjson的引用是通过服务端动态载入。</p>
-    </blockquote>
-
-    <p><strong>注意：</strong> JSONP和CORS的主要区别还是JSONP只支持GET方式的请求，CORS除了对不安全请求推荐OPTION请求外，适用于所有请求</p>
   </li>
+</ul>
+
+<p><code class="highlighter-rouge">javascript
+    //需要请求跨域资源的页面:a.html
+      &lt;script src="//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"&gt;
+      // 上面type表示向服务端请求的参数,本地的回调函数是getjsonp
+      &lt;script&gt;
+         function getjsonp(data){
+             console.log(data)   //显示接受到的数据
+         }
+      &lt;/script&gt;
+      //服务端将会返回下面代码
+      getjsonp({
+          type:'json',
+          name:'yw',
+          sex:'man'
+      })
+      //JQ实现
+      $.ajax({
+         dataType:'jsonp',
+         type:'get',
+         url:'//isunmonkey.com/a.html?type=json',
+         jsonp:'callback',
+         jsonpCallback:'getjsonp',
+         success:function(data){
+             console.log(data)  //输出数据
+         }
+      })
+</code></p>
+<blockquote>
+  <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">javascript
+     //a.html
+     &lt;script&gt;
+         function getjson(data){
+             console.log(data);
+         }
+     &lt;/script&gt;
+     &lt;script src="//isunmonkey.com/a.js"&gt;
+     //a.js源码
+     getjson({
+         name:'yw',
+         sex:'man'
+     })
+</code></p>
+<blockquote>
+  <p>在a页面实现了一个方法getjson，调用外部js：a.js,在a.js中引用了getjson方法，而JSONP的区别就是对函数getjson的引用是通过服务端动态载入。</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>**注意：** JSONP和CORS的主要区别还是JSONP只支持GET方式的请求，CORS除了对不安全请求推荐OPTION请求外，适用于所有请求
+</code></pre>
+</div>
+
+<ul>
   <li>
     <p>document.domain</p>
 
@@ -372,40 +384,40 @@
     <blockquote>
       <p>在窗口创建后，当前窗口下的所有新载入页面都共享同一个name,并且每个页面都具备对window.name的读写操作。<strong>注意:</strong> 这里所说的新载入的页面依然是相同域名下的子页面，对于不同域，window.name依然为空。比如：在<code class="highlighter-rouge">a.com</code>中设置name为<code class="highlighter-rouge">yw</code>,<code class="highlighter-rouge">a.com/b.html</code>中读取name为<code class="highlighter-rouge">yw</code>,但是在<code class="highlighter-rouge">b.com</code>中，name依然是空，所以window.name依然局限于同源策略。所以会遇到如下问题：</p>
     </blockquote>
-
-    <p><code class="highlighter-rouge">javascript
-      //a.html
-      //&lt;iframe id="bif" style="display:none" src="b.com/b.html"&gt;&lt;iframe&gt;
-      &lt;script&gt;
-          var bif = document.getElementById('bif');
-          var data;
-          bif.onload = function(){
-              data = bif.contentWindow.name;  //报错：a.com和b.com不同源，无法回去到b.com的name值
-          }
-      &lt;/script&gt;
-      //b.html
-      window.name="yw"
- </code></p>
-    <blockquote>
-      <p>当然，既然是window.name被称为JSONP的最优替代方案，还是有越过同源策略的解决方案，利用iframe的跨域能力，在iframe的onload的方法执行的时候，重置iframe的src为当前域同域，具体如下：</p>
-    </blockquote>
-
-    <p><code class="highlighter-rouge">javascript
-   //a页面
-   &lt;script&gt;
-      var bif = document.getElementById('bif');
-      var data;
-      bif.onload = function(){
-          bif.src = 'about:blank';    //此处原理就是在iframe加入后，将iframe地址替换为当前域，便绕过了不同域限制
-          data = bif.contentWindow.name;  //报错：a.com和b.com不同源，无法回去到b.com的name值
-          document.body.removeChild(bif);   //获取到数据后将当前iframe移除，防止页面当前iframe重复刷新
-      }
-  &lt;/script&gt;
- </code></p>
   </li>
-  <li>
-    <p>niginx反向代理(网上方案很多，目前个人觉得是最佳解决方案)</p>
-  </li>
+</ul>
+
+<p><code class="highlighter-rouge">javascript
+    //a.html
+    //&lt;iframe id="bif" style="display:none" src="b.com/b.html"&gt;&lt;iframe&gt;
+    &lt;script&gt;
+        var bif = document.getElementById('bif');
+        var data;
+        bif.onload = function(){
+            data = bif.contentWindow.name;  //报错：a.com和b.com不同源，无法回去到b.com的name值
+        }
+    &lt;/script&gt;
+    //b.html
+    window.name="yw"
+</code></p>
+<blockquote>
+  <p>当然，既然是window.name被称为JSONP的最优替代方案，还是有越过同源策略的解决方案，利用iframe的跨域能力，在iframe的onload的方法执行的时候，重置iframe的src为当前域同域，具体如下：</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">javascript
+ //a页面
+ &lt;script&gt;
+    var bif = document.getElementById('bif');
+    var data;
+    bif.onload = function(){
+        bif.src = 'about:blank';    //此处原理就是在iframe加入后，将iframe地址替换为当前域，便绕过了不同域限制
+        data = bif.contentWindow.name;  //报错：a.com和b.com不同源，无法回去到b.com的name值
+        document.body.removeChild(bif);   //获取到数据后将当前iframe移除，防止页面当前iframe重复刷新
+    }
+&lt;/script&gt;
+</code></p>
+<ul>
+  <li>niginx反向代理(网上方案很多，目前个人觉得是最佳解决方案)</li>
 </ul>
 
                     <hr>
