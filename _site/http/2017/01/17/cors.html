@@ -210,18 +210,11 @@
   <p>IE例外情况：</p>
 </blockquote>
 
-<blockquote>
-  <ul>
-    <li><code class="highlighter-rouge">授信范围</code>（Trust Zones）：两个相互之间高度互信的域名，如公司域名（corporate domains），不遵守同源策略的限制。</li>
-  </ul>
-</blockquote>
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; + ``授信范围``（Trust Zones）：两个相互之间高度互信的域名，如公司域名（corporate domains），不遵守同源策略的限制。
 
-<blockquote>
-  <ul>
-    <li><code class="highlighter-rouge">端口</code>：IE未将端口号加入到同源策略的组成部分之中，因此 <em>http://company.com:81/index.html</em>和<em>http://company.com/index.html</em> 属于同源并且不受任何限制。<br />
-    <strong>这些例外是非标准的，其它浏览器也未做出支持，但会助于开发基于window RT IE的应用程序。</strong></li>
-  </ul>
-</blockquote>
+&gt; + ``端口``：IE未将端口号加入到同源策略的组成部分之中，因此 *http://company.com:81/index.html*和*http://company.com/index.html* 属于同源并且不受任何限制。    &amp;nbsp;&amp;nbsp; **这些例外是非标准的，其它浏览器也未做出支持，但会助于开发基于window RT IE的应用程序。**
+</code></pre>
+</div>
 
 <h3 id="section-1">2.更改源策略:</h3>
 <p>对于相同主域的，可以通过设置document.domain进行跨域，即将其设置为当前域或者当前域的超级域，比如：主页www.isunmonkey.com，则可以将子页和主页的document.domain都设置为：isunmonkey.com，这样就实现了不同页面之间的调用.</p>
@@ -317,58 +310,56 @@
   </li>
 </ul>
 
-<p><code class="highlighter-rouge">javascript
-    //需要请求跨域资源的页面:a.html
-      &lt;script src="//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"&gt;
-      // 上面type表示向服务端请求的参数,本地的回调函数是getjsonp
-      &lt;script&gt;
-         function getjsonp(data){
-             console.log(data)   //显示接受到的数据
-         }
-      &lt;/script&gt;
-      //服务端将会返回下面代码
-      getjsonp({
-          type:'json',
-          name:'yw',
-          sex:'man'
-      })
-      //JQ实现
-      $.ajax({
-         dataType:'jsonp',
-         type:'get',
-         url:'//isunmonkey.com/a.html?type=json',
-         jsonp:'callback',
-         jsonpCallback:'getjsonp',
-         success:function(data){
-             console.log(data)  //输出数据
-         }
-      })
-</code></p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="c1">//需要请求跨域资源的页面:a.html</span>
+      <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"</span><span class="o">&gt;</span>
+      <span class="c1">// 上面type表示向服务端请求的参数,本地的回调函数是getjsonp</span>
+      <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+         <span class="kd">function</span> <span class="nx">getjsonp</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>   <span class="c1">//显示接受到的数据</span>
+         <span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>      <span class="c1">//服务端将会返回下面代码</span>
+      <span class="nx">getjsonp</span><span class="p">({</span>
+          <span class="na">type</span><span class="p">:</span><span class="s1">'json'</span><span class="p">,</span>
+          <span class="na">name</span><span class="p">:</span><span class="s1">'yw'</span><span class="p">,</span>
+          <span class="na">sex</span><span class="p">:</span><span class="s1">'man'</span>
+      <span class="p">})</span>
+      <span class="c1">//JQ实现</span>
+      <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+         <span class="na">dataType</span><span class="p">:</span><span class="s1">'jsonp'</span><span class="p">,</span>
+         <span class="na">type</span><span class="p">:</span><span class="s1">'get'</span><span class="p">,</span>
+         <span class="na">url</span><span class="p">:</span><span class="s1">'//isunmonkey.com/a.html?type=json'</span><span class="p">,</span>
+         <span class="na">jsonp</span><span class="p">:</span><span class="s1">'callback'</span><span class="p">,</span>
+         <span class="na">jsonpCallback</span><span class="p">:</span><span class="s1">'getjsonp'</span><span class="p">,</span>
+         <span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>  <span class="c1">//输出数据</span>
+         <span class="p">}</span>
+      <span class="p">})</span>
+</code></pre>
+</div>
 <blockquote>
   <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
 </blockquote>
 
-<p><code class="highlighter-rouge">javascript
-     //a.html
-     &lt;script&gt;
-         function getjson(data){
-             console.log(data);
-         }
-     &lt;/script&gt;
-     &lt;script src="//isunmonkey.com/a.js"&gt;
-     //a.js源码
-     getjson({
-         name:'yw',
-         sex:'man'
-     })
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code> //a.html
+ &lt;script&gt;
+     function getjson(data){
+         console.log(data);
+     }
+ &lt;/script&gt;
+ &lt;script src="//isunmonkey.com/a.js"&gt;
+ //a.js源码
+ getjson({
+     name:'yw',
+     sex:'man'
+ })
+</code></pre>
+</div>
 <blockquote>
   <p>在a页面实现了一个方法getjson，调用外部js：a.js,在a.js中引用了getjson方法，而JSONP的区别就是对函数getjson的引用是通过服务端动态载入。</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>**注意：** JSONP和CORS的主要区别还是JSONP只支持GET方式的请求，CORS除了对不安全请求推荐OPTION请求外，适用于所有请求
-</code></pre>
-</div>
+<p><strong>注意：</strong> JSONP和CORS的主要区别还是JSONP只支持GET方式的请求，CORS除了对不安全请求推荐OPTION请求外，适用于所有请求</p>
 
 <ul>
   <li>
@@ -387,35 +378,35 @@
   </li>
 </ul>
 
-<p><code class="highlighter-rouge">javascript
-    //a.html
-    //&lt;iframe id="bif" style="display:none" src="b.com/b.html"&gt;&lt;iframe&gt;
-    &lt;script&gt;
-        var bif = document.getElementById('bif');
-        var data;
-        bif.onload = function(){
-            data = bif.contentWindow.name;  //报错：a.com和b.com不同源，无法回去到b.com的name值
-        }
-    &lt;/script&gt;
-    //b.html
-    window.name="yw"
-</code></p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="c1">//a.html</span>
+    <span class="c1">//&lt;iframe id="bif" style="display:none" src="b.com/b.html"&gt;&lt;iframe&gt;</span>
+    <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+        <span class="kd">var</span> <span class="nx">bif</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'bif'</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">data</span><span class="p">;</span>
+        <span class="nx">bif</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">data</span> <span class="o">=</span> <span class="nx">bif</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>  <span class="c1">//报错：a.com和b.com不同源，无法回去到b.com的name值</span>
+        <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>    <span class="c1">//b.html</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">name</span><span class="o">=</span><span class="s2">"yw"</span>
+</code></pre>
+</div>
 <blockquote>
   <p>当然，既然是window.name被称为JSONP的最优替代方案，还是有越过同源策略的解决方案，利用iframe的跨域能力，在iframe的onload的方法执行的时候，重置iframe的src为当前域同域，具体如下：</p>
 </blockquote>
 
-<p><code class="highlighter-rouge">javascript
- //a页面
- &lt;script&gt;
-    var bif = document.getElementById('bif');
-    var data;
-    bif.onload = function(){
-        bif.src = 'about:blank';    //此处原理就是在iframe加入后，将iframe地址替换为当前域，便绕过了不同域限制
-        data = bif.contentWindow.name;  //报错：a.com和b.com不同源，无法回去到b.com的name值
-        document.body.removeChild(bif);   //获取到数据后将当前iframe移除，防止页面当前iframe重复刷新
-    }
-&lt;/script&gt;
-</code></p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">//a页面</span>
+ <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+    <span class="kd">var</span> <span class="nx">bif</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'bif'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="nx">bif</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">bif</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'about:blank'</span><span class="p">;</span>    <span class="c1">//此处原理就是在iframe加入后，将iframe地址替换为当前域，便绕过了不同域限制</span>
+        <span class="nx">data</span> <span class="o">=</span> <span class="nx">bif</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>  <span class="c1">//报错：a.com和b.com不同源，无法回去到b.com的name值</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">bif</span><span class="p">);</span>   <span class="c1">//获取到数据后将当前iframe移除，防止页面当前iframe重复刷新</span>
+    <span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre>
+</div>
 <ul>
   <li>niginx反向代理(网上方案很多，目前个人觉得是最佳解决方案)</li>
 </ul>
