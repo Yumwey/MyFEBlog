@@ -5,8 +5,8 @@
     <description>Yumwey's blog,use Jekyll and github pages.</description>
     <link>isunmonkey.com//</link>
     <atom:link href="isunmonkey.com//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Jan 2017 10:40:39 +0800</pubDate>
-    <lastBuildDate>Thu, 19 Jan 2017 10:40:39 +0800</lastBuildDate>
+    <pubDate>Thu, 19 Jan 2017 10:45:53 +0800</pubDate>
+    <lastBuildDate>Thu, 19 Jan 2017 10:45:53 +0800</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -14,7 +14,7 @@
         <description>&lt;h3 id=&quot;section&quot;&gt;1.同源策略&lt;/h3&gt;
 &lt;p&gt;如果&lt;code class=&quot;highlighter-rouge&quot;&gt;协议&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;端口&lt;/code&gt;（如果指定了一个）和&lt;code class=&quot;highlighter-rouge&quot;&gt;主机&lt;/code&gt;对于两个页面是相同的，则两个页面具有相同的源。&lt;/p&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;IE&lt;/strong&gt;例外情况：&lt;/p&gt;
+  &lt;p&gt;IE例外情况：&lt;/p&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;授信范围&lt;/code&gt;（Trust Zones）：两个相互之间高度互信的域名，如公司域名（corporate domains），不遵守同源策略的限制。&lt;/li&gt;
     &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;端口&lt;/code&gt;：IE未将端口号加入到同源策略的组成部分之中，因此 &lt;em&gt;http://company.com:81/index.html&lt;/em&gt;和&lt;em&gt;http://company.com/index.html&lt;/em&gt; 属于同源并且不受任何限制。&lt;br /&gt;
@@ -24,11 +24,11 @@
 
 &lt;h3 id=&quot;section-1&quot;&gt;2.更改源策略:&lt;/h3&gt;
 &lt;p&gt;对于相同主域的，可以通过设置document.domain进行跨域，即将其设置为当前域或者当前域的超级域，比如：主页www.isunmonkey.com，则可以将子页和主页的document.domain都设置为：isunmonkey.com，这样就实现了不同页面之间的调用.&lt;/p&gt;
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c1&quot;&gt;//a页面:www.isunmonkey.com&lt;/span&gt;
- &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;domain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'isunmonkey.com'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
- &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HTMLIframe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contentWindow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;//获取到当前页面嵌套iframe的内容&lt;/span&gt;
- &lt;span class=&quot;c1&quot;&gt;//b页面&lt;/span&gt;
- &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;domain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'isunmonkey.com'&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; //a页面:www.isunmonkey.com
+ document.domain = 'isunmonkey.com';
+ var hls = HTMLIframe.contentWindow.document;    //获取到当前页面嵌套iframe的内容
+ //b页面
+ document.domain = 'isunmonkey.com'
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 

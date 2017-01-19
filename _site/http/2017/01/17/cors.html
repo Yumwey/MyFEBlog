@@ -206,7 +206,7 @@
                     	<h3 id="section">1.同源策略</h3>
 <p>如果<code class="highlighter-rouge">协议</code>，<code class="highlighter-rouge">端口</code>（如果指定了一个）和<code class="highlighter-rouge">主机</code>对于两个页面是相同的，则两个页面具有相同的源。</p>
 <blockquote>
-  <p><strong>IE</strong>例外情况：</p>
+  <p>IE例外情况：</p>
   <ul>
     <li><code class="highlighter-rouge">授信范围</code>（Trust Zones）：两个相互之间高度互信的域名，如公司域名（corporate domains），不遵守同源策略的限制。</li>
     <li><code class="highlighter-rouge">端口</code>：IE未将端口号加入到同源策略的组成部分之中，因此 <em>http://company.com:81/index.html</em>和<em>http://company.com/index.html</em> 属于同源并且不受任何限制。<br />
@@ -216,11 +216,11 @@
 
 <h3 id="section-1">2.更改源策略:</h3>
 <p>对于相同主域的，可以通过设置document.domain进行跨域，即将其设置为当前域或者当前域的超级域，比如：主页www.isunmonkey.com，则可以将子页和主页的document.domain都设置为：isunmonkey.com，这样就实现了不同页面之间的调用.</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">//a页面:www.isunmonkey.com</span>
- <span class="nb">document</span><span class="p">.</span><span class="nx">domain</span> <span class="o">=</span> <span class="s1">'isunmonkey.com'</span><span class="p">;</span>
- <span class="kd">var</span> <span class="nx">hls</span> <span class="o">=</span> <span class="nx">HTMLIframe</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nb">document</span><span class="p">;</span>    <span class="c1">//获取到当前页面嵌套iframe的内容</span>
- <span class="c1">//b页面</span>
- <span class="nb">document</span><span class="p">.</span><span class="nx">domain</span> <span class="o">=</span> <span class="s1">'isunmonkey.com'</span>
+<div class="highlighter-rouge"><pre class="highlight"><code> //a页面:www.isunmonkey.com
+ document.domain = 'isunmonkey.com';
+ var hls = HTMLIframe.contentWindow.document;    //获取到当前页面嵌套iframe的内容
+ //b页面
+ document.domain = 'isunmonkey.com'
 </code></pre>
 </div>
 
