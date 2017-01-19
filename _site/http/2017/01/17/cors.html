@@ -307,39 +307,39 @@
     <blockquote>
       <p>通过上文对同源策略的介绍我们可以知道，客户端可以通过部分标签嵌入的方式实现资源的跨域，比如<script>,<img />等，而JSONP就是通过嵌入script标签的方式实现对外域资源的读取操作。JSONP和JSON不同，JSON是一种是具备简单结构的纯文本，是现在数据传输的主流方式，区别于以往XML,JSON更加简洁高效而且更易于维护和编写，JSONP则是包含回调函数和数据格式的JSON使用模式。它允许服务端通过集成Script tags返回给客户端，客户端嵌入到当前调用页面来实现资源跨域。</script></p>
     </blockquote>
+
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="c1">//需要请求跨域资源的页面:a.html</span>
+    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"</span><span class="o">&gt;</span>
+    <span class="c1">// 上面type表示向服务端请求的参数,本地的回调函数是getjsonp</span>
+    <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+       <span class="kd">function</span> <span class="nx">getjsonp</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+           <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>   <span class="c1">//显示接受到的数据</span>
+       <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>    <span class="c1">//服务端将会返回下面代码</span>
+    <span class="nx">getjsonp</span><span class="p">({</span>
+        <span class="na">type</span><span class="p">:</span><span class="s1">'json'</span><span class="p">,</span>
+        <span class="na">name</span><span class="p">:</span><span class="s1">'yw'</span><span class="p">,</span>
+        <span class="na">sex</span><span class="p">:</span><span class="s1">'man'</span>
+    <span class="p">})</span>
+    <span class="c1">//JQ实现</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+       <span class="na">dataType</span><span class="p">:</span><span class="s1">'jsonp'</span><span class="p">,</span>
+       <span class="na">type</span><span class="p">:</span><span class="s1">'get'</span><span class="p">,</span>
+       <span class="na">url</span><span class="p">:</span><span class="s1">'//isunmonkey.com/a.html?type=json'</span><span class="p">,</span>
+       <span class="na">jsonp</span><span class="p">:</span><span class="s1">'callback'</span><span class="p">,</span>
+       <span class="na">jsonpCallback</span><span class="p">:</span><span class="s1">'getjsonp'</span><span class="p">,</span>
+       <span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+           <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>  <span class="c1">//输出数据</span>
+       <span class="p">}</span>
+    <span class="p">})</span>
+</code></pre>
+    </div>
+    <blockquote>
+      <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
+    </blockquote>
   </li>
 </ul>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="c1">//需要请求跨域资源的页面:a.html</span>
-      <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"</span><span class="o">&gt;</span>
-      <span class="c1">// 上面type表示向服务端请求的参数,本地的回调函数是getjsonp</span>
-      <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-         <span class="kd">function</span> <span class="nx">getjsonp</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>   <span class="c1">//显示接受到的数据</span>
-         <span class="p">}</span>
-      <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span>      <span class="c1">//服务端将会返回下面代码</span>
-      <span class="nx">getjsonp</span><span class="p">({</span>
-          <span class="na">type</span><span class="p">:</span><span class="s1">'json'</span><span class="p">,</span>
-          <span class="na">name</span><span class="p">:</span><span class="s1">'yw'</span><span class="p">,</span>
-          <span class="na">sex</span><span class="p">:</span><span class="s1">'man'</span>
-      <span class="p">})</span>
-      <span class="c1">//JQ实现</span>
-      <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-         <span class="na">dataType</span><span class="p">:</span><span class="s1">'jsonp'</span><span class="p">,</span>
-         <span class="na">type</span><span class="p">:</span><span class="s1">'get'</span><span class="p">,</span>
-         <span class="na">url</span><span class="p">:</span><span class="s1">'//isunmonkey.com/a.html?type=json'</span><span class="p">,</span>
-         <span class="na">jsonp</span><span class="p">:</span><span class="s1">'callback'</span><span class="p">,</span>
-         <span class="na">jsonpCallback</span><span class="p">:</span><span class="s1">'getjsonp'</span><span class="p">,</span>
-         <span class="na">success</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>  <span class="c1">//输出数据</span>
-         <span class="p">}</span>
-      <span class="p">})</span>
-</code></pre>
-</div>
-<blockquote>
-  <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
-</blockquote>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">//a.html</span>
  <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
