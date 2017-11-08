@@ -203,7 +203,7 @@
                             前端资源跨域以及解决方案
                         </h1>
                     </div>
-                    	<h3 id="section">1.同源策略</h3>
+                    	<h3 id="1同源策略">1.同源策略</h3>
 <p>如果<code class="highlighter-rouge">协议</code>，<code class="highlighter-rouge">端口</code>（如果指定了一个）和<code class="highlighter-rouge">主机</code>对于两个页面是相同的，则两个页面具有相同的源。</p>
 
 <blockquote>
@@ -223,18 +223,17 @@
   </ul>
 </blockquote>
 
-<h3 id="section-1">2.更改源策略:</h3>
+<h3 id="2更改源策略">2.更改源策略:</h3>
 <p>对于相同主域的，可以通过设置document.domain进行跨域，即将其设置为当前域或者当前域的超级域，比如：主页www.isunmonkey.com，则可以将子页和主页的document.domain都设置为：isunmonkey.com，这样就实现了不同页面之间的调用.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">//a页面:www.isunmonkey.com</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//a页面:www.isunmonkey.com</span>
  <span class="nb">document</span><span class="p">.</span><span class="nx">domain</span> <span class="o">=</span> <span class="s1">'isunmonkey.com'</span><span class="p">;</span>
  <span class="kd">var</span> <span class="nx">hls</span> <span class="o">=</span> <span class="nx">HTMLIframe</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nb">document</span><span class="p">;</span>    <span class="c1">//获取到当前页面嵌套iframe的内容</span>
  <span class="c1">//b页面</span>
  <span class="nb">document</span><span class="p">.</span><span class="nx">domain</span> <span class="o">=</span> <span class="s1">'isunmonkey.com'</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h3 id="section-2">3.跨源网络访问</h3>
+<h3 id="3跨源网络访问">3.跨源网络访问</h3>
 <p>     同源策略控制了不同源之间的访问和交互，交互分为三类：</p>
 <blockquote>
   <ul>
@@ -254,7 +253,7 @@
   </ul>
 </blockquote>
 
-<h3 id="section-3">3.阻止跨域访问</h3>
+<h3 id="3阻止跨域访问">3.阻止跨域访问</h3>
 <ul>
   <li>
     <p>阻止跨域写操作，只要检测请求中的一个不可测的标记(CSRF token)即可，这个标记被称为Cross-Site Request Forgery (CSRF) 标记。必须使用这个标记来阻止页面的跨站读操作。</p>
@@ -271,11 +270,11 @@
   </li>
 </ul>
 
-<h3 id="api">4.跨源脚本API访问</h3>
+<h3 id="4跨源脚本api访问">4.跨源脚本API访问</h3>
 
 <p>Javascript的APIs中，如 <strong>iframe.contentWindow</strong>, <strong>window.parent</strong>, <strong>window.open</strong> 和 <strong>window.opener</strong> 允许文档间直接相互引用。当两个文档的源不同时，这些引用方式将对 Window 和 Location对象的访问添加限制。可以使用window.postMessage 作为替代方案，提供跨域文档间的通讯。</p>
 
-<h3 id="section-4">5.跨源数据存储访问</h3>
+<h3 id="5跨源数据存储访问">5.跨源数据存储访问</h3>
 <p>存储在浏览器中的数据，如localStorage和IndexedDB，以源进行分割。每个源都拥有自己单独的存储空间，一个源中的Javascript脚本不能对属于其它源的数据进行读写操作。</p>
 
 <blockquote>
@@ -284,7 +283,7 @@
 
 <p>Cookies使用不同的源定义方式。一个页面可以为本域和任何父域设置cookie，只要是父域不是公共后缀（public suffix）即可。Firefox和Chrome使用Public Suffix List决定一个域是否是一个公共后缀（public suffix）。不管使用哪个协议（HTTP/HTTPS）或端口号，浏览器都允许给定的域以及其任何子域名(sub-domains)来访问cookie。设置cookie时，你可以使用Domain，Path，Secure，和Http-Only标记来限定其访问性。读取cookie时，不会知晓它的出处。尽管使用安全的https连接，任何可见的cookie都是使用不安全的连接设置的。
   <br /></p>
-<h3 id="section-5">6.跨域解决方案</h3>
+<h3 id="6跨域解决方案">6.跨域解决方案</h3>
 
 <p>跨域并非是浏览器或者安全协议限制了发起跨站请求，而是请求正常发起，但是请求返回结果被浏览器拦截了。但是部分浏览器（FF,Chrome）不支持HTTPS到HTTP的请求发起，会直接被浏览器阻止。</p>
 
@@ -296,15 +295,14 @@
       <p>CORS也称跨域资源共享，其实现方式是通过新增部分HTTP请求首部（header），来给服务端增加对请求来源的声明，最基础的实现方式是：服务端通过设置Access-Control-Allow-Origin（<code class="highlighter-rouge">允许请求源</code>）来开放其他域对当前域接口的请求，前端实现和以往并没有区别。另外，对那些会对服务器数据造成破坏性影响的 HTTP 请求方法（特别是 GET 以外的 HTTP 方法，或者搭配某些MIME类型的POST请求），标准强烈要求浏览器必须先以 OPTIONS 请求方式发送一个预请求(preflight request)，从而获知服务器端对跨源请求所支持 HTTP 方法。</p>
     </blockquote>
 
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span><span class="s1">'www.baidu.com/getSearch'</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystate</span> <span class="o">=</span> <span class="nx">onreadystate</span><span class="p">;</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">param</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">onreadystate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="c1">// 请求状态和返回</span>
 <span class="p">}</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p><strong>注意:</strong> CORS并不兼容IE10以下的IE浏览器，但是IE8 和 9 通过 XDomainRequest 对象来实现CORS</p>
   </li>
   <li>
@@ -314,7 +312,7 @@
       <p>通过上文对同源策略的介绍我们可以知道，客户端可以通过部分标签嵌入的方式实现资源的跨域，比如<script>,<img />等，而JSONP就是通过嵌入script标签的方式实现对外域资源的读取操作。JSONP和JSON不同，JSON是一种是具备简单结构的纯文本，是现在数据传输的主流方式，区别于以往XML,JSON更加简洁高效而且更易于维护和编写，JSONP则是包含回调函数和数据格式的JSON使用模式。它允许服务端通过集成Script tags返回给客户端，客户端嵌入到当前调用页面来实现资源跨域。</script></p>
     </blockquote>
 
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="c1">//需要请求跨域资源的页面:a.html</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">//需要请求跨域资源的页面:a.html</span>
     <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//www.isunmonkey.com/a.html?type=json&amp;callback=getjsonp"</span><span class="o">&gt;</span>
     <span class="c1">// 上面type表示向服务端请求的参数,本地的回调函数是getjsonp</span>
     <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
@@ -339,13 +337,12 @@
            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>  <span class="c1">//输出数据</span>
        <span class="p">}</span>
     <span class="p">})</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <blockquote>
       <p>JSONP原理也非常容易理解，上文提到实现思路是通过嵌入外部资源的方式。所以原理如下代码:</p>
     </blockquote>
 
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="c1">//a.html</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c1">//a.html</span>
    <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
        <span class="kd">function</span> <span class="nx">getjson</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
@@ -357,8 +354,7 @@
        <span class="na">name</span><span class="p">:</span><span class="s1">'yw'</span><span class="p">,</span>
        <span class="na">sex</span><span class="p">:</span><span class="s1">'man'</span>
    <span class="p">})</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <blockquote>
       <p>在a页面实现了一个方法getjson，调用外部js：a.js,在a.js中引用了getjson方法，而JSONP的区别就是对函数getjson的引用是通过服务端动态载入。</p>
     </blockquote>
@@ -379,7 +375,7 @@
       <p>在窗口创建后，当前窗口下的所有新载入页面都共享同一个name,并且每个页面都具备对window.name的读写操作。<strong>注意:</strong> 这里所说的新载入的页面依然是相同域名下的子页面，对于不同域，window.name依然为空。比如：在<code class="highlighter-rouge">a.com</code>中设置name为<code class="highlighter-rouge">yw</code>,<code class="highlighter-rouge">a.com/b.html</code>中读取name为<code class="highlighter-rouge">yw</code>,但是在<code class="highlighter-rouge">b.com</code>中，name依然是空，所以window.name依然局限于同源策略。所以会遇到如下问题：</p>
     </blockquote>
 
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="c1">//a.html</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">//a.html</span>
   <span class="c1">//&lt;iframe id="bif" style="display:none" src="b.com/b.html"&gt;&lt;iframe&gt;</span>
   <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
       <span class="kd">var</span> <span class="nx">bif</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'bif'</span><span class="p">);</span>
@@ -390,13 +386,12 @@
   <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
 </span>  <span class="c1">//b.html</span>
   <span class="nb">window</span><span class="p">.</span><span class="nx">name</span><span class="o">=</span><span class="s2">"yw"</span>
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <blockquote>
       <p>当然，既然是window.name被称为JSONP的最优替代方案，还是有越过同源策略的解决方案，利用iframe的跨域能力，在iframe的onload的方法执行的时候，重置iframe的src为当前域同域，具体如下：</p>
     </blockquote>
 
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="c1">//a页面</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">//a页面</span>
  <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
   <span class="kd">var</span> <span class="nx">bif</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'bif'</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">data</span><span class="p">;</span>
@@ -406,8 +401,7 @@
       <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">bif</span><span class="p">);</span>   <span class="c1">//获取到数据后将当前iframe移除，防止页面当前iframe重复刷新</span>
   <span class="p">}</span>
 <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre>
-    </div>
+</span></code></pre></div>    </div>
   </li>
   <li>
     <p>niginx反向代理(网上方案很多，目前个人觉得是最佳解决方案)</p>
@@ -428,7 +422,7 @@
                                 <div>
                                 
                                 
-                                <i class="fa fa-comments-o"> </i> <span class='disqus-comment-count' data-disqus-url="isunmonkey.com/http/2017/01/17/cors.html">0</span> comments
+                                <i class="fa fa-comments-o"> </i> <span class='disqus-comment-count' data-disqus-url="http://localhost:4000/http/2017/01/17/cors.html">0</span> comments
                                 
                                 </div>
                             </div>

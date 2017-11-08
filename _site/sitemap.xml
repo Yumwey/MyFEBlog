@@ -2,60 +2,68 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>isunmonkey.com/http/2017/01/17/cors.html</loc>
+        <loc>http://localhost:4000/http/2017/02/20/ssh.html</loc>
+    </url>
+
+    <url>
+        <loc>http://localhost:4000/javascript/2017/01/21/test.html</loc>
+    </url>
+
+    <url>
+        <loc>http://localhost:4000/http/2017/01/17/cors.html</loc>
     </url>
 
 
     <url>
-        <loc>isunmonkey.com/404.html</loc>
+        <loc>http://localhost:4000/404.html</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/about/</loc>
+        <loc>http://localhost:4000/about/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/blog/</loc>
+        <loc>http://localhost:4000/blog/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/search/cb-search.json</loc>
+        <loc>http://localhost:4000/search/cb-search.json</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/construct/</loc>
+        <loc>http://localhost:4000/construct/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/feed.xml</loc>
+        <loc>http://localhost:4000/feed.xml</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/http/</loc>
+        <loc>http://localhost:4000/http/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/</loc>
+        <loc>http://localhost:4000/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/javascript/</loc>
+        <loc>http://localhost:4000/javascript/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/precompile/</loc>
+        <loc>http://localhost:4000/precompile/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/psersonl/</loc>
+        <loc>http://localhost:4000/psersonl/</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/robots.txt</loc>
+        <loc>http://localhost:4000/robots.txt</loc>
     </url>
 
     <url>
-        <loc>isunmonkey.com/sitemap.xml</loc>
+        <loc>http://localhost:4000/sitemap.xml</loc>
     </url>
 
 </urlset>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+	
+	    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <meta content="震惊！这个人可以在电脑中穿梭竟然是因为它！！" name="description">
+  
+  
+    <meta name="keywords" content="SSH,FTP,同步">
+  
+  <meta name="author" content="Yumwey">
+
+  <title>
+    
+        CodeMoneky丶|基于Putty + FreessHD 搭建 跨OSX和windows文件实时同步方案
+    
+  </title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+
+  <!-- Third-party CSS -->
+  <link href="/bower_components/normalize-css/normalize.min.css" rel="stylesheet">
+  <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bower_components/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/font-mfizz/font-mfizz.css" rel="stylesheet">
+  <!-- <link href="/bower_components/toastr/toastr.min.css" rel="stylesheet"> -->
+  <link href="/bower_components/jquery.gritter/css/jquery.gritter.css" rel="stylesheet">
+  <link rel="stylesheet" href="/search/css/cb-search.css">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.min.css" rel="stylesheet">
+  <link href="/static/css/pygments.css" rel="stylesheet">
+  <link href="/static/css/main.css" rel="stylesheet">
+
+  <!-- Scripts -->
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/search/js/bootstrap3-typeahead.min.js"></script>
+
+  <!-- cb-search -->
+  <script src="/search/js/cb-search.js"></script>
+  <script>
+    $(function(){
+        $("pre").css('display','block');
+    });
+  </script>
+  <!-- Mainly scripts -->
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+  <script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+  <!-- Peity -->
+  <script src="/bower_components/peity/jquery.peity.min.js"></script>
+
+  <script src="/bower_components/PACE/pace.min.js"></script>
+  <script src="/bower_components/wow/dist/wow.min.js"></script>
+  <!-- Custom and plugin javascript -->
+  <script src="/static/js/inspinia.js"></script>
+
+  <!-- Rickshaw -->
+  <script src="/bower_components/rickshaw/vendor/d3.v3.js"></script>
+  <script src="/bower_components/rickshaw/rickshaw.min.js"></script>
+
+
+  <!-- jPages -->
+  <script src="/static/js/jPages.js"></script>
+  <script src="/static/js/js.js"></script>
+  <script id="dsq-count-scr" src="//jalpc.disqus.com/count.js" async></script>
+  <script type="text/javascript">
+        $(function(){
+          /* initiate the plugin */
+          $("div.pag-holder").jPages({
+              containerID  : "pag-itemContainer",
+              perPage      : 5,  /* num of items per page */
+              startPage    : 1,
+              startRange   : 1,
+              midRange     : 3,
+              endRange     : 1
+          });
+      });
+  </script>
+
+<!-- GrowingIO -->
+
+  <script>
+    var _vds = _vds || [];
+    window._vds = _vds;
+    (function(){
+      _vds.push(['setAccountId', 'a49d4901c7853da9']);
+      (function() {
+        var vds = document.createElement('script');
+        vds.type='text/javascript';
+        vds.async = true;
+        vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(vds, s);
+      })();
+    })();
+  </script>
+
+
+</head>
+
+	
+
+
+<body id="page-top" class="landing-page">
+
+	
+	    <div class="search-tool"
+      style="position: fixed; top: 0px ; bottom: 0px; left: 0px; right:  0px; opacity: 0.95; background-color: #111111; z-index: 9999; display: none;">
+    <input type="text" class="form-control search-content" id="search-content" style="position: fixed; top: 60px" placeholder="Search Blog">
+
+    <div style="position: fixed; top: 16px; right: 16px; z-index: 9999;">
+        <img src=/search/img/cb-close.png id="close-btn"/>
+    </div>
+</div>
+
+<div style="position: fixed; right: 16px; bottom: 20px; z-index: 9999;">
+    <img src=/search/img/cb-search.png id="search-btn"  title="Double click Ctrl"/>
+</div>
+
+<div class="navbar-wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">CodeMoneky丶</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="page-scroll" href="/blog/"></a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/blog/">博客</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/javascript/">Javascript</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/precompile/">Html/Css/Sass</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/construct/">前端工程</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/http/">HTTP</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/psersonl/">个人心得</a></li>
+                        
+                            
+                            <li>
+                            
+                            <a class="page-scroll" href="/about/">关于我</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</div>
+<div id="inSlider" class="carousel carousel-fade blogbg" data-ride="carousel">
+    <div class="slant-left"></div>
+    <div class="slant-right"></div>
+</div>
+
+	
+
+    <div class="wrapper wrapper-content  animated fadeInRight article">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="pull-right">
+                    	
+                        	<button class="btn btn-white btn-xs" type="button">Http</button>
+                        
+                    </div>
+                    <div class="text-center article-title">
+                    <span class="text-muted"><i class="fa fa-clock-o"></i> 20 Feb 2017</span>
+                        <h1>
+                            基于Putty + FreessHD 搭建 跨OSX和windows文件实时同步方案
+                        </h1>
+                    </div>
+                    	<blockquote>
+  <p>公司开发是基于C#的，开发工具是VS,作为世界上最好的编辑器，难免在公司的“高配”电脑下，撸代码的时候，时不时的卡顿，在切tab的时候，甚至能喝个茶， 当然可以开个编辑器专门用来编辑前端部分的项目文件，但是最最重要的是，OSX并不支持.net的开发，无法跑IIS服务（不过好像现在可以跨平台了），即使是JAVA开发，也需要配置各种服务和包管理，当然这是前端视角，作为纯前端，本人向来不喜欢跑IDE（撸了两年.net开发），也疲倦于每次项目修改和文件创建时，公司电脑的延迟和卡顿，所以在前人的经验下，实现前端在mac上只负责更新和维护前端文件夹，win上负责跑服务和测试，原理就是使用FTP,将win作为服务器，mac作为本地开发，mac编辑文件后，win上对应文件会实时同步。</p>
+</blockquote>
+
+<h4 id="一准备条件">一、准备条件</h4>
+<ul>
+  <li>下载：FreessHD，一款免费的SFTP服务器软件.</li>
+  <li>下载：PuttyGen，密钥和私钥生成器。</li>
+  <li>下载：PuTTy，一个Telnet,SSH等纯TCP以及串行连接软件。</li>
+</ul>
+
+<h4 id="二freesshd配置">二、FreessHD配置</h4>
+<ul>
+  <li>以管理员权限运行FreessHD（一定是管理员，避免<code class="highlighter-rouge">Server refused public-key signatrue despite accepting key</code>的错误提示）。</li>
+  <li>点击<code class="highlighter-rouge">Server status</code>,启动SSH服务，也就是第二个，如果弹窗报错提示服务已经存在，请在服务管理里面找到FreessHD服务，点击关闭，再重新打开FreessHD就可以了。</li>
+  <li>点击<code class="highlighter-rouge">SSH</code>，配置相关参数如下：
+    <blockquote>
+      <p>Listen: 配置你当前IPV4地址。（cmd -&gt; ipconfig查询）
+Port: 个人自定义端口，默认22.
+Max number.. : 2，个人配置，看实际情况。
+idle timeout: 600。
+其他的都默认就行了。</p>
+    </blockquote>
+  </li>
+  <li>点击<code class="highlighter-rouge">Authentication</code>，配置相关参数如下：
+    <blockquote>
+      <p>Public key folder: 选择自己创建存放公钥的文件夹。
+Password authentication: Disabled。
+Public key authentication: Required。</p>
+    </blockquote>
+  </li>
+  <li>点击<code class="highlighter-rouge">Users</code>，点击Add，配置参数如下：
+    <blockquote>
+      <p>Login: 设置用户名，自定义。
+Authorization: 选择SSH。
+User can use: Shell,SFTP。</p>
+    </blockquote>
+  </li>
+  <li>点击<code class="highlighter-rouge">SFTP</code>，设置SFTP home path，远程连接时会直接显示需要同步的当前项目。相当于设置默认操作文件夹。</li>
+</ul>
+
+<h4 id="三密公钥生成">三、密/公钥生成</h4>
+<ul>
+  <li>打开PuTTyGen，点击<code class="highlighter-rouge">generate</code>，然后在Key栏下空白区域疯狂的操作鼠标，然后出现一段根据SSH-2 RSA 算法生成的编码。</li>
+  <li>点击<code class="highlighter-rouge">Save private key</code>生成私有密钥，建议给私有密钥设置key，就是密码。存储到自己想放的文件夹。（密钥不仅在win上一份，复制一份到MAC上，常识..）</li>
+  <li>复制Key下面生成的编码，保存到一个<code class="highlighter-rouge">没有后缀</code>的文件里面。作为公钥,存放在FreessHD指定的公钥存放文件夹中。</li>
+</ul>
+
+<h4 id="四putty使用">四、puTTY使用</h4>
+<ul>
+  <li>点击进入puTTY，在HOST Name中设置FreessHD中配置好的ip地址和端口。</li>
+  <li>选择左侧栏SSH，展开下拉，点击认证，在打开的界面中选择puTTYgen生成的私钥，完成后点击打开。</li>
+  <li>在打开的CMD命令行界面中，输入设置好的用户名，回车后输入私钥设置的密码。成功的话就代表可以连接了。</li>
+</ul>
+
+<h4 id="五mac上工具的选择">五、MAC上工具的选择</h4>
+<ul>
+  <li>我选择的是Atom，当然也可以Sublime Text。 或者VSC或者WS，完全个人喜好，我主Atom辅VSC。</li>
+  <li>安装Atom插件: Remote-Ftp。</li>
+  <li>在需要同步的项目中添加文件.ftpconfig。根据插件文档，配置自己设置好的FTP信息，点击Connect，连接成功就代表OK了，此时打开文件随便编辑，就可以同步到win上，不需要任何第三方软件。局域网传输。</li>
+</ul>
+
+<h4 id="六-结语">六、 结语</h4>
+<p>纯粹是为了满足个人实际需求的做法，毕竟，很多事情，都是可以解决或者妥协的，就看自己愿不愿意了。配置过程摸索期间很头痛，出现不少问题，但是配置好后，其实发现很简单。以上是所有实际操作步骤，依照特殊情况自定。</p>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <h5 style="display: inline;">Tags:</h5>
+                                
+                                    <button class="btn btn-white btn-xs" type="button">blog</button>
+                                
+                        </div>
+                        <div class="col-md-6">
+                            <div class="small text-right">
+                                <h5>Stats:</h5>
+                                <div>
+                                
+                                
+                                <i class="fa fa-comments-o"> </i> <span class='disqus-comment-count' data-disqus-url="http://localhost:4000/http/2017/02/20/ssh.html">0</span> comments
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- donate -->
+                            
+                                <div class="text-center">
+<a id="donate-img" class="btn btn-warning  dim btn-large-dim btn-outline" href="javascript:void(0)"><i class="fa fa-smile-o"></i></a>
+</div>
+
+<script type="text/javascript">
+
+    $('#donate-img').on('click',function(e){
+        var maskEle = '<div class="mask"><div class="pay-pal"><img src=/static/img/donate/alipay.png></div>'+
+                        '<div class="pay-pal"><img src=/static/img/donate/wechat_pay.png></div></div>';
+        $('body').prepend(maskEle);
+        $('.mask').css({
+            left:$(window).width()/2 - 250,
+            top:$(window).height()/2 - 150
+        })
+        $('.mask').addClass('show');
+        e.stopPropagation();
+    })
+
+    $(document.body).on('click',function(){
+        $('.mask').removeClass('show');
+    })
+
+</script>
+
+                            
+                            <br>
+                            <!-- share -->
+                        <!--     
+                            <h2>Share:</h2>
+
+<div class="bshare-custom">
+	<a title="分享到微信" class="bshare-weixin"></a>
+	<a title="分享到QQ空间" class="bshare-qzone"></a>
+	<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+	<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+</div>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=513f778e-a8f7-4c20-9ec2-d29cc2328d75&amp;pophcol=1&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+                        
+                        <br>
+                        comment
+                        
+
+
+<div id="disqus_thread"></div>
+<script>
+/** * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS. * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+	/*
+	var disqus_config = function () { this.page.url = PAGE_URL;
+	// Replace PAGE_URL with your page's canonical URL variable this.page.identifier = PAGE_IDENTIFIER;
+	// Replace PAGE_IDENTIFIER with your page's unique identifier variable };
+	*/
+	(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = '//jalpc.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+ -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+	
+	    <script src="/static/js/scroll.js"></script>
+
+<!-- Baidu analytics -->
+
+
+<!-- Google analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-73784599-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+
+  <script type="text/javascript">
+    var disqusShortName = "jalpc";
+
+    var disqusPublicKey = "tj2MPaNlHMONwTH5bGDNSXyaBpW7q282MeUzh5CwcjJerNhK8Kxk3aWo7IckzTX7";
+
+    var urlArray = [];
+    $('.disqus-comment-count').each(function () {
+      var url = $(this).attr('data-disqus-url');
+      urlArray.push('link:' + url);
+    });
+    $.ajax({
+      type: 'GET',
+      url: "https://disqus.com/api/3.0/threads/set.jsonp",
+      data: { api_key: disqusPublicKey, forum : disqusShortName, thread : urlArray },
+      cache: false,
+      dataType: "jsonp",
+      success: function (result) {
+        for (var i in result.response) {
+          var count = result.response[i].posts;
+          if ( count ) {
+            $('.disqus-comment-count[data-disqus-url="' + result.response[i].link + '"]').html(count);
+          }
+        }
+      }
+    });
+</script>
+
+
+
+
+<script async src="/static/js/count.min.js"></script>
+
+	
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
+			<p id="jalpc_site_pv"><strong>&copy; 2017 CodeMoneky丶</strong></p>
+		</div>
+	</div>
+</body>
+</html>
